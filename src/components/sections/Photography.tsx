@@ -14,61 +14,53 @@ export interface PhotoItem {
 const defaultPhotos: PhotoItem[] = [
   {
     id: 'ph-1',
-    title: 'Atmospheric Nimbus Formations',
-    category: 'Clouds',
-    year: '2025',
-    url: 'https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1000&auto=format&fit=crop',
-    description: 'Towering stratocumulus cloud structures captured during late monsoon twilight.'
+    title: 'Heritage Dome at Twilight',
+    category: 'Architecture',
+    year: '2024',
+    url: '/images/photography/heritage-dome.jpg',
+    description: 'Illuminated neoclassical dome with warm accent lighting and crescent moon in the night sky.'
   },
   {
     id: 'ph-2',
-    title: 'Monolithic Architectural Geometry',
-    category: 'Architecture',
-    year: '2024',
-    url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop',
-    description: 'Angular concrete lines and deep shadows across modern institutional building facades.'
+    title: 'Solar Meridian & Ridgeline',
+    category: 'Sunset',
+    year: '2025',
+    url: '/images/photography/sunset-silhouettes.jpg',
+    description: 'Golden hour sunset casting deep tree silhouettes against distant mountain terrain.'
   },
   {
     id: 'ph-3',
-    title: 'Chromosphere Dusk Horizon',
-    category: 'Sunset',
-    year: '2025',
-    url: 'https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=1000&auto=format&fit=crop',
-    description: 'Deep amber and crimson gradients across coastal horizon at astronomical dusk.'
+    title: 'Solitary Gold-Lined Cloud',
+    category: 'Clouds',
+    year: '2024',
+    url: '/images/photography/golden-cloud.jpg',
+    description: 'Isolated low-altitude cloud catching warm sunset amber light against a textured altocumulus sky.'
   },
   {
     id: 'ph-4',
-    title: 'Silicon Micro-Trace Routing',
-    category: 'Bench Macro',
-    year: '2024',
-    url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop',
-    description: 'Close-focus macro inspection of multi-layer PCB traces and SMD passives.'
+    title: 'Vertical Cumulus Formations',
+    category: 'Clouds',
+    year: '2025',
+    url: '/images/photography/cumulus-tower.jpg',
+    description: 'Towering cloud column rising through atmospheric layers during evening transition.'
   },
   {
     id: 'ph-5',
-    title: 'High-Altitude Cirrus Drift',
-    category: 'Clouds',
-    year: '2024',
-    url: 'https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?q=80&w=1000&auto=format&fit=crop',
-    description: 'Delicate ice-crystal cloud ribbons dispersed across clear zenith.'
-  },
-  {
-    id: 'ph-6',
-    title: 'Industrial Skeletal Grid',
+    title: 'Arched Fenestration Facade',
     category: 'Architecture',
-    year: '2025',
-    url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop',
-    description: 'Symmetrical steel lattice structure framing open skyline.'
+    year: '2024',
+    url: '/images/photography/arched-facade.jpg',
+    description: 'Repetitive arched window bays and electrical grid lines framed by urban foliage.'
   }
 ];
 
 export default function Photography() {
-  const [photos, setPhotos] = useLocalStorage<PhotoItem[]>('mohanbharathi_gallery_photos', defaultPhotos);
+  const [photos, setPhotos] = useLocalStorage<PhotoItem[]>('mohanbharathi_gallery_photos_v2', defaultPhotos);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activePhoto, setActivePhoto] = useState<PhotoItem | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const categories = ['All', 'Clouds', 'Architecture', 'Sunset', 'Bench Macro'];
+  const categories = ['All', 'Clouds', 'Architecture', 'Sunset'];
 
   const filteredPhotos = selectedCategory === 'All'
     ? photos
@@ -83,7 +75,7 @@ export default function Photography() {
       reader.onload = (event) => {
         if (event.target?.result) {
           const newPhoto: PhotoItem = {
-            id: `user-ph-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+            id: `user-ph-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
             title: file.name.replace(/\.[^/.]+$/, ''),
             category: selectedCategory === 'All' ? 'Observational' : selectedCategory,
             year: '2026',
@@ -114,7 +106,7 @@ export default function Photography() {
         <div>
           <h2 className="section-title">The Engineering & Light Gallery</h2>
           <p className="section-desc">
-            Observational photography, architectural geometry, cloud formations and macro laboratory bench details.
+            Observational photography, architectural geometry, cloud formations and light studies captured by Mohanbharathi P.
           </p>
         </div>
 
@@ -133,7 +125,7 @@ export default function Photography() {
             onClick={() => fileInputRef.current?.click()}
           >
             <Upload size={16} />
-            <span>Upload My Photos</span>
+            <span>Upload More Photos</span>
           </button>
         </div>
       </div>
@@ -171,7 +163,7 @@ export default function Photography() {
               role="button"
               tabIndex={0}
             >
-              <div className="gallery-frame__image-wrap">
+              <div className="gallery-frame__image-wrap" style={{ height: '280px' }}>
                 <img
                   src={photo.url}
                   alt={photo.title}
@@ -209,11 +201,11 @@ export default function Photography() {
             </div>
 
             <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ maxWidth: '100%', maxHeight: '65vh', overflow: 'hidden', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ maxWidth: '100%', maxHeight: '70vh', overflow: 'hidden', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <img
                   src={activePhoto.url}
                   alt={activePhoto.title}
-                  style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '65vh', objectFit: 'contain' }}
+                  style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '70vh', objectFit: 'contain' }}
                 />
               </div>
 
