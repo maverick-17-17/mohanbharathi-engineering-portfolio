@@ -404,3 +404,4 @@ export const initialProjects: Project[] = [
     futureImprovements: 'Fabricate an etched single-sided PCB with RJ11 modular jacks for remote handheld participant buzzers, and add a 7-segment display showing the winner number.'
   }
 ];
+

@@ -135,3 +135,4 @@ export default function Hero({ projects, onSelectProjectChip }: HeroProps) {
     </section>
   );
 }
+

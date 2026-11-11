@@ -131,3 +131,4 @@ export default function ProjectCard({ project, onOpenModal }: ProjectCardProps) 
     </div>
   );
 }
+

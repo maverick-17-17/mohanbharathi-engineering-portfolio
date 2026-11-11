@@ -108,3 +108,4 @@ export default function ProjectIcon({ id, size = 48 }: ProjectIconProps) {
       );
   }
 }
+

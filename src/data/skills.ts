@@ -119,3 +119,4 @@ export const defaultSkills: Skill[] = [
     tools: ['Macro Hardware Details', 'Composition', 'Exposure Control', 'Natural Lighting']
   }
 ];
+
